@@ -1,4 +1,4 @@
-import Block from './block.js';
+import Block from "./block.js";
 
 class BlockChain {
     constructor() {
@@ -10,8 +10,6 @@ class BlockChain {
         const data = {
             sender: 'genesis',
             receiver: 'genesis',
-            senderKey: 'genesis',
-            receiverKey: 'genesis',
             amount: 0
         }
         const previousHash = '0';
@@ -24,20 +22,21 @@ class BlockChain {
     createBlock = async (data) => {
         const previousHash = this.blocks[this.blocks.length - 1].hash;
         const currentTime = Date.now();
-        let newBlockHash = await this.proofOfWork(data, currentTime, previousHash);
+        const newBlockHash = await this.proofOfWork(data, currentTime, previousHash);
         const newBlock = new Block(data, currentTime, this.blocks.length, newBlockHash, previousHash);
         this.blocks.push(newBlock);
+        return true;
     }
 
     proofOfWork = async (data, currentTime, previousHash) => {
         let nounce = 0;
         let newBlockHash;
-        // simple proof of work that requires new hash to start from 4 0s
+        // simple proof of work that requires new hash to start from 3 0s
         while(true) {
             newBlockHash = await this.hashData(JSON.stringify(data) + currentTime + previousHash + nounce);
-            if (newBlockHash.startsWith('00'))
+            if (newBlockHash.startsWith('000'))
                 break;
-            nounce += 1;
+            ++nounce;
         }
         return newBlockHash;
     }
@@ -60,30 +59,28 @@ class BlockChain {
     }
 }
 
-const blockChain = new BlockChain();
-console.log(blockChain.blocks);
-let data = {
-    sender: 'Saahil',
-    receiver: 'Anakin',
-    senderKey: '1234',
-    receiverKey: '5678',
-    amount: 1000
-}
+export default BlockChain;
 
-let data2 = {
-    sender: 'Geralt',
-    receiver: 'Yennefer',
-    senderKey: '123456',
-    receiverKey: '56781234',
-    amount: 1000
-}
+// const blockChain = new BlockChain();
+// console.log(blockChain.blocks);
+// let data = {
+//     sender: 'Saahil',
+//     receiver: 'Anakin',
+//     amount: 1000
+// }
 
-setTimeout( () => {
-    blockChain.createBlock(data);
-    console.log(blockChain.blocks);
-}, 1000);
+// let data2 = {
+//     sender: 'Geralt',
+//     receiver: 'Yennefer',
+//     amount: 1000
+// }
 
-setTimeout( () => {
-    blockChain.createBlock(data2);
-    console.log(blockChain.blocks);
-}, 2000);
+// setTimeout( () => {
+//     blockChain.createBlock(data);
+//     console.log(blockChain.blocks);
+// }, 1000);
+
+// setTimeout( () => {
+//     blockChain.createBlock(data2);
+//     console.log(blockChain.blocks);
+// }, 2000);
