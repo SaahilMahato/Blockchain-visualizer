@@ -2,9 +2,11 @@ import BlockChain from "./block_chain/block_chain.js";
 import { NormalUser, Miner } from "./nodes/users.js";
 
 const blockChain = new BlockChain();
-const saahil = new NormalUser(blockChain, "Saahil");
-const anakin = new NormalUser(blockChain, "Anakin");
-const miner = new Miner(blockChain);
+const users = {
+    "saahil": new NormalUser(blockChain, "Saahil"),
+    "anakin": new NormalUser(blockChain, "Anakin"),
+    "miner": new Miner(blockChain)
+};
 
 const transferMoney = async (from, to, amount) => {
     const newData = {
@@ -16,7 +18,7 @@ const transferMoney = async (from, to, amount) => {
     const isValid = from.validateTransaction(newData) && to.validateTransaction(newData);
 
     if (isValid) {
-        const isMined = await miner.mine(newData);
+        const isMined = await users["miner"].mine(newData);
 
         if (isMined) {
             from.sendTransaction(newData);
@@ -27,10 +29,4 @@ const transferMoney = async (from, to, amount) => {
     return false;
 }
 
-setInterval(async ()=> {
-    let done = await transferMoney(saahil, anakin, 20);
-    console.log(blockChain);
-    console.log(saahil.saahilCoin);
-    console.log(anakin.saahilCoin);
-    console.log(miner.saahilCoin);
-}, 1000);
+export { blockChain, users, transferMoney };

@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+}
+
+.visualize-area {
+    width: 100vw;
+    height: 60vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5%;
+}
+
+.graph {
+    width: 78%;
+    height: 100%;
+    padding: 0.5%;
+    background-color: red;
+    border-radius: 10px;
+}
+
+.block-info {
+    width: 20%;
+    height: 100%;
+    padding: 0.5%;
+    background-color: green;
+    border-radius: 10px;
+}
+
+.controls-area {
+    width: 100vw;
+    height: 40vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5%;
+}
+
+.transaction-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+    width: 20%;
+    height: 100%;
+    padding: 0.5%;
+    background-color: green;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+button, input, select {
+    padding: 0.5%;
+    font-size: 20px;
+}
+
+select, input {
+    width: 70%;
+}
+
+.transaction-form h2 {
+    justify-self: flex-start;
+    align-self: center;
+}
+
+.form-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.output-console {
+    width: 78%;
+    height: 100%;
+    background-color: red;
+    border-radius: 10px;
+}

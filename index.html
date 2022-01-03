@@ -5,8 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlockChain Visualizer</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
 <body>
+    <main>
+        <div class="visualize-area">
+            <div class="graph">
+
+            </div>
+            <div class="block-info">
+                <h2>Block Details</h2>
+            </div>
+        </div>
+
+        <div class="controls-area">
+
+            <form class="transaction-form">
+                <h2>Add a new block</h2>
+                <div class="form-div">
+                    <label for="sender">Sender: </label>
+                    <select id="sender" name="sender">
+                        <option value="saahil">Saahil</option>
+                        <option value="anakin">Anakin</option>
+                    </select>
+                </div>
+
+                <div class="form-div">
+                    <label for="receiver">Receiver: </label>
+                    <select id="receiver" name="receiver">
+                        <option value="saahil">Saahil</option>
+                        <option value="anakin">Anakin</option>
+                    </select>
+                </div>
+                    
+                <div class="form-div">
+                    <label for="amount">Amount: </label>
+                    <input type="number" id="amount" name="amount">
+                </div>
+
+                <div class="form-div">
+                    <input id="add-button" type="submit">
+                    <button id="clear-button">Clear</button>
+                </div>
+            </form>
+
+            <div class="output-console">
+            </div>
+
+        </div>
+
+    </main>
+
     <script src="src/index.js" type="module"></script>
 </body>
 </html>
