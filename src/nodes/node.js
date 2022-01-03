@@ -8,12 +8,6 @@ class Node {
     receiveTransaction = (data) => this.saahilCoin += data.amount;
 
     sendTransaction = (data) => this.saahilCoin -= data.amount;
-
-    validateTransaction = (data) => {
-        if (this.name === data.sender && this.saahilCoin < data.amount)
-            return false;
-        return true;
-    }
 }
 
 export default Node;

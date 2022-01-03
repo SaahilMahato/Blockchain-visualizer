@@ -5,8 +5,19 @@ const blockChain = new BlockChain();
 const users = {
     "saahil": new NormalUser(blockChain, "Saahil"),
     "anakin": new NormalUser(blockChain, "Anakin"),
-    "miner": new Miner(blockChain)
+    "miner": new Miner(blockChain, "miner")
 };
+
+const validateTransaction = (from, to, amount) => {
+
+    if (from.name === to.name)
+        return false;
+
+    if (from.saahilCoin < amount)
+        return false;
+
+    return true;
+}
 
 const transferMoney = async (from, to, amount) => {
     const newData = {
@@ -15,7 +26,7 @@ const transferMoney = async (from, to, amount) => {
         amount: amount
     }
 
-    const isValid = from.validateTransaction(newData) && to.validateTransaction(newData);
+    const isValid = validateTransaction(from, to, amount);
 
     if (isValid) {
         const isMined = await users["miner"].mine(newData);
