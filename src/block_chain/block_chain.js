@@ -15,24 +15,26 @@ class BlockChain {
             amount: 0
         }
         const previousHash = '0';
-        const genesisBlockHash = await this.hashBlock(JSON.stringify(data) + previousHash);
-        const genesisBlock = new Block(data, 0, genesisBlockHash, previousHash);
+        const currentTime = Date.now();
+        const genesisBlockHash = await this.hashData(JSON.stringify(data) + currentTime + previousHash);
+        const genesisBlock = new Block(data, currentTime, 0, genesisBlockHash, previousHash);
         this.blocks.push(genesisBlock);
     }
 
     createBlock = async (data) => {
         const previousHash = this.blocks[this.blocks.length - 1].hash;
-        let newBlockHash = await this.proofOfWork(data, previousHash);
-        const newBlock = new Block(data, this.blocks.length, newBlockHash, previousHash);
+        const currentTime = Date.now();
+        let newBlockHash = await this.proofOfWork(data, currentTime, previousHash);
+        const newBlock = new Block(data, currentTime, this.blocks.length, newBlockHash, previousHash);
         this.blocks.push(newBlock);
     }
 
-    proofOfWork = async (data, previousHash) => {
+    proofOfWork = async (data, currentTime, previousHash) => {
         let nounce = 0;
         let newBlockHash;
         // simple proof of work that requires new hash to start from 4 0s
         while(true) {
-            newBlockHash = await this.hashBlock(JSON.stringify(data) + previousHash + nounce);
+            newBlockHash = await this.hashData(JSON.stringify(data) + currentTime + previousHash + nounce);
             if (newBlockHash.startsWith('00'))
                 break;
             nounce += 1;
@@ -40,7 +42,7 @@ class BlockChain {
         return newBlockHash;
     }
 
-    hashBlock = async (data) => {
+    hashData = async (data) => {
         const digest = await this.digestData(data);
         return this.digestToHex(digest);
     }
