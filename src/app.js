@@ -3,20 +3,32 @@ import { NormalUser, Miner } from "./nodes/users.js";
 
 const blockChain = new BlockChain();
 const users = {
-    "saahil": new NormalUser(blockChain, "Saahil"),
-    "anakin": new NormalUser(blockChain, "Anakin"),
-    "miner": new Miner(blockChain, "miner")
+    "saahil": new NormalUser(blockChain, "Saahil Mahato"),
+    "anakin": new NormalUser(blockChain, "Anakin Skywalker"),
+    "yoda": new NormalUser(blockChain, "Yoda"),
+    "hansolo": new NormalUser(blockChain, "Han Solo"),
+    "obiwan": new NormalUser(blockChain, "Obi-wan Kenobi"),
+    "quigon": new NormalUser(blockChain, "Qui-Gon Ginn"),
 };
+
+const miners = {
+    "geralt": new Miner(blockChain, "Geralt"),
+    "yennefer": new Miner(blockChain, "Yennefer"),
+    "vesimir": new Miner(blockChain, "Vesimir")
+}
 
 const validateTransaction = (from, to, amount) => {
 
+    if (!amount)
+        return [false, "Transaction does not involve SaahilCoin."]
+
     if (from.name === to.name)
-        return false;
+        return [false, "Invalid transaction entities."];
 
     if (from.saahilCoin < amount)
-        return false;
+        return [false, "Sender doesn't have enough SaahilCoins."];
 
-    return true;
+    return [true, "Valid transaction. New Block added to chain."];
 }
 
 const transferMoney = async (from, to, amount) => {
@@ -26,18 +38,22 @@ const transferMoney = async (from, to, amount) => {
         amount: amount
     }
 
-    const isValid = validateTransaction(from, to, amount);
+    const [isValid, message] = validateTransaction(from, to, amount);
 
     if (isValid) {
-        const isMined = await users["miner"].mine(newData);
+
+        const keys = Object.keys(miners);
+        const chosenMiner = miners[keys[keys.length * Math.random() << 0]];
+
+        const isMined = await chosenMiner.mine(newData);
 
         if (isMined) {
             from.sendTransaction(newData);
             to.receiveTransaction(newData);
-            return true;
+            return [true, message];
         }
     }
-    return false;
+    return [false, message];
 }
 
-export { blockChain, users, transferMoney };
+export { blockChain, users, miners, transferMoney };

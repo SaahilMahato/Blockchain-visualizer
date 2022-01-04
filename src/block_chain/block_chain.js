@@ -8,12 +8,12 @@ class BlockChain {
 
     initialize = async () => {
         const data = {
-            sender: 'genesis',
-            receiver: 'genesis',
-            amount: 0
+            sender: 'Genesis',
+            receiver: 'Genesis',
+            amount: 0.0
         }
         const previousHash = '0';
-        const currentTime = Date.now();
+        const currentTime = new Date();
         const genesisBlockHash = await this.hashData(JSON.stringify(data) + currentTime + previousHash);
         const genesisBlock = new Block(data, currentTime, 0, genesisBlockHash, previousHash);
         this.blocks.push(genesisBlock);
@@ -21,7 +21,7 @@ class BlockChain {
 
     createBlock = async (data) => {
         const previousHash = this.blocks[this.blocks.length - 1].hash;
-        const currentTime = Date.now();
+        const currentTime = new Date();
         const newBlockHash = await this.proofOfWork(data, currentTime, previousHash);
         const newBlock = new Block(data, currentTime, this.blocks.length, newBlockHash, previousHash);
         this.blocks.push(newBlock);
@@ -60,27 +60,3 @@ class BlockChain {
 }
 
 export default BlockChain;
-
-// const blockChain = new BlockChain();
-// console.log(blockChain.blocks);
-// let data = {
-//     sender: 'Saahil',
-//     receiver: 'Anakin',
-//     amount: 1000
-// }
-
-// let data2 = {
-//     sender: 'Geralt',
-//     receiver: 'Yennefer',
-//     amount: 1000
-// }
-
-// setTimeout( () => {
-//     blockChain.createBlock(data);
-//     console.log(blockChain.blocks);
-// }, 1000);
-
-// setTimeout( () => {
-//     blockChain.createBlock(data2);
-//     console.log(blockChain.blocks);
-// }, 2000);

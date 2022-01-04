@@ -5,7 +5,7 @@
 }
 
 body {
-    background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 }
 
 .visualize-area {
@@ -21,16 +21,36 @@ body {
     width: 78%;
     height: 100%;
     padding: 0.5%;
-    background-color: red;
+    background-color: #F5DEB3;
     border-radius: 10px;
+    overflow-y: scroll;
 }
 
-.block-info {
+.graph div{
+    display: inline-block;
+}
+
+.block-details {
     width: 20%;
     height: 100%;
     padding: 0.5%;
-    background-color: green;
+    background-color: #FDFCFA;
     border-radius: 10px;
+    box-shadow: 0 5px 5px #777777;
+}
+
+.block-details h2 {
+    font-size: 32px;
+    text-align: center;
+}
+
+.block-info p {
+    width: 100%;
+    height: 10%;
+    margin: 5% 0;
+    font-size: 20px;
+    word-wrap: break-word;
+    border-bottom: solid 2px black;
 }
 
 .controls-area {
@@ -50,9 +70,10 @@ body {
     width: 20%;
     height: 100%;
     padding: 0.5%;
-    background-color: green;
+    background-color: #FDFCFA;
     border-radius: 10px;
     font-size: 20px;
+    box-shadow: 0 5px 5px #777777;
 }
 
 button, input, select {
@@ -73,11 +94,28 @@ select, input {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 20%;
+}
+
+.form-div #add-button {
+    height: 100%;
+    margin: 0 auto;
+    color: white;
+    background-color: green;
+    font-size: 32px;
+    border-radius: 10px;
+}
+
+.form-div #add-button:hover {
+    cursor: pointer;
 }
 
 .output-console {
     width: 78%;
     height: 100%;
-    background-color: red;
+    background-color: #FDFCFA;
     border-radius: 10px;
+    padding: 1%;
+    box-shadow: 0 5px 5px #777777;
+    overflow-y: scroll;
 }

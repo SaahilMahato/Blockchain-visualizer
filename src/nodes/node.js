@@ -1,7 +1,7 @@
 class Node {
     constructor(blockChainCopy, name) {
         this.name = name;
-        this.saahilCoin = 100;
+        this.saahilCoin = 100.0;
         this.localBlockChain = blockChainCopy;
     }
 
