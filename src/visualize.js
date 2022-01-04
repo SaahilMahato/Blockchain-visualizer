@@ -18,14 +18,8 @@ const addBlockToGraph = () => {
     newBlockGraph.setAttribute("amount", newBlock.amount + " SaahilCoins");
     newBlockGraph.setAttribute("hash", newBlock.hash);
 
-    newBlockGraph.style.width = "100px";
-    newBlockGraph.style.height = "100px";
+    
     newBlockGraph.style.backgroundColor = newBlock.id !== 0? "red": "yellow";
-    newBlockGraph.style.fontSize = "48px";
-    newBlockGraph.style.margin = "10px";
-    newBlockGraph.style.cursor = 'pointer';
-    newBlockGraph.style.padding = '1% 0';
-    newBlockGraph.style.textAlign = 'center';
     newBlockGraph.innerText = newBlock.id;
 
     newBlockGraph.addEventListener("click", ()=> {
