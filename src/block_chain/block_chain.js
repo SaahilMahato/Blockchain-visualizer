@@ -19,17 +19,15 @@ class BlockChain {
         this.blocks.push(genesisBlock);
     }
 
-    createBlock = async (data) => {
+    createBlock = async (data, nounce) => {
         const previousHash = this.blocks[this.blocks.length - 1].hash;
         const currentTime = new Date();
-        const newBlockHash = await this.proofOfWork(data, currentTime, previousHash);
+        const newBlockHash = await this.proofOfWork(data, currentTime, previousHash, nounce);
         const newBlock = new Block(data, currentTime, this.blocks.length, newBlockHash, previousHash);
-        this.blocks.push(newBlock);
-        return true;
+        return [true, newBlock];
     }
 
-    proofOfWork = async (data, currentTime, previousHash) => {
-        let nounce = 0;
+    proofOfWork = async (data, currentTime, previousHash, nounce) => {
         let newBlockHash;
         // simple proof of work that requires new hash to start from 3 0s
         while(true) {

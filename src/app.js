@@ -42,19 +42,30 @@ const transferMoney = async (from, to, amount) => {
 
     if (isValid) {
 
-        const keys = Object.keys(miners);
-        const chosenMiner = miners[keys[keys.length * Math.random() << 0]];
+        const promiseArray = [];
 
-        const isMined = await chosenMiner.mine(newData);
+        for (const miner in miners) {
+            const promise = new Promise(async (resolve, reject) => {
+                const [status, minerName, block] = await miners[miner].mine(newData);
+                if (status)
+                    resolve([status, minerName, block]);
+                else
+                    resolve([status, minerName, block]);
+            });
+            promiseArray.push(promise);
+        }
+        
+        const [isMined, minerName, block] = await Promise.race(promiseArray);
 
         if (isMined) {
+            blockChain.blocks.push(block);
             from.sendTransaction(newData);
             to.receiveTransaction(newData);
-            const minerMessage = message.concat(" Mined by " + chosenMiner.name);
+            const minerMessage = message + " Mined by " + minerName + ".";
             return [true, minerMessage];
         }
     }
-    return [false, message];
+    return [isValid, message];
 }
 
 export { blockChain, users, miners, transferMoney };

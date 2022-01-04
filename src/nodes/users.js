@@ -12,10 +12,19 @@ class Miner extends Node {
     }
 
     mine = async (data) => {
-        const isMined = await this.localBlockChain.createBlock(data);
+
+        const getRandomInt = (min, max) => {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        const nounce = getRandomInt(0, 100);
+        const [isMined, block] = await this.localBlockChain.createBlock(data, nounce);
+        
         if (isMined) {
             ++this.saahilCoin;
-            return true;
+            return [true, this.name, block];
         }
         return false;
     }

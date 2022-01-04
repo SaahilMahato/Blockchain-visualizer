@@ -97,6 +97,6 @@ transactionForm.addEventListener("submit", async (e) => {
     const amount = parseFloat(data.get("amount"));
     const [isTransfered, message] = await transferMoney(sender, receiver, amount);
     addOutputToConsole(isTransfered, message);
-    if (isTransfered) addBlockToGraph();
+    if (isTransfered) 
+        setTimeout(addBlockToGraph, 100);
 });
-
