@@ -50,7 +50,8 @@ const transferMoney = async (from, to, amount) => {
         if (isMined) {
             from.sendTransaction(newData);
             to.receiveTransaction(newData);
-            return [true, message];
+            const minerMessage = message.concat(" Mined by " + chosenMiner.name);
+            return [true, minerMessage];
         }
     }
     return [false, message];
