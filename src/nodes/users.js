@@ -11,6 +11,10 @@ class Miner extends Node {
         super(blockChainCopy, name);
     }
 
+    receiveReward = () => {
+        this.saahilCoin += 1;
+    }
+
     mine = async (data) => {
 
         const getRandomInt = (min, max) => {
@@ -22,10 +26,8 @@ class Miner extends Node {
         const nounce = getRandomInt(0, 100);
         const [isMined, block] = await this.localBlockChain.createBlock(data, nounce);
         
-        if (isMined) {
-            ++this.saahilCoin;
-            return [true, this.name, block];
-        }
+        if (isMined)
+            return [true, this, block];
         return false;
     }
 }

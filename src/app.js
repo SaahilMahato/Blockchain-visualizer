@@ -55,13 +55,14 @@ const transferMoney = async (from, to, amount) => {
             promiseArray.push(promise);
         }
         
-        const [isMined, minerName, block] = await Promise.race(promiseArray);
+        const [isMined, miner, block] = await Promise.race(promiseArray);
 
         if (isMined) {
-            blockChain.blocks.push(block);
+            blockChain.addBlock(block);
+            miner.receiveReward();
             from.sendTransaction(newData);
             to.receiveTransaction(newData);
-            const minerMessage = message + " Mined by " + minerName + ".";
+            const minerMessage = message + " Mined by " + miner.name + ".";
             return [true, minerMessage];
         }
     }

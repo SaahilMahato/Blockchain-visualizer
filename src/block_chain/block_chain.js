@@ -19,6 +19,10 @@ class BlockChain {
         this.blocks.push(genesisBlock);
     }
 
+    addBlock = (block) => {
+        this.blocks.push(block);
+    }
+
     createBlock = async (data, nounce) => {
         const previousHash = this.blocks[this.blocks.length - 1].hash;
         const currentTime = new Date();
