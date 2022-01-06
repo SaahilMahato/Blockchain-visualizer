@@ -36,7 +36,7 @@ class BlockChain {
         // simple proof of work that requires new hash to start from 3 0s
         while(true) {
             newBlockHash = await this.hashData(JSON.stringify(data) + currentTime + previousHash + nounce);
-            if (newBlockHash.startsWith('000'))
+            if (newBlockHash.startsWith('0000'))
                 break;
             ++nounce;
         }

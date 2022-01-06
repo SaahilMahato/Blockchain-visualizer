@@ -50,7 +50,12 @@ const addBlockToGraph = () => {
             hashParagraph
         );
     });
-
+    
+    if (newBlock.id !== 0) {
+        const rightArrowImage = new Image();
+        rightArrowImage.src = './images/right-arrow.svg';
+        graph.appendChild(rightArrowImage);
+    }
     graph.appendChild(newBlockGraph);
 }
 
@@ -94,7 +99,14 @@ transactionForm.addEventListener("submit", async (e) => {
     const sender = users[data.get("sender")] || miners[data.get("sender")];
     const receiver = users[data.get("receiver")] || miners[data.get("receiver")];
     const amount = parseFloat(data.get("amount"));
+
+    const miningMessage = document.createElement('p');
+    miningMessage.innerText = "Miners are mining ...";
+    miningMessage.style.color = "blue";
+    outputConsole.appendChild(miningMessage);
     const [isTransfered, message] = await transferMoney(sender, receiver, amount);
+    outputConsole.removeChild(miningMessage);
+
     addOutputToConsole(isTransfered, message);
     if (isTransfered) 
         setTimeout(addBlockToGraph, 100);
