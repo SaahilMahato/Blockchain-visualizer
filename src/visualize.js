@@ -60,19 +60,18 @@ setTimeout(() => {
 
 
 const populateSelectOptions = (select) => {
-    for (const user in users) {
-        const newOption = document.createElement("option");
-        newOption.value = user;
-        newOption.innerText = user.charAt(0).toUpperCase() + user.slice(1);
-        select.appendChild(newOption);
+    
+    const populateGroup = (group) => {
+        for (const user in group) {
+            const newOption = document.createElement("option");
+            newOption.value = user;
+            newOption.innerText = group[user].name;
+            select.appendChild(newOption);
+        }
     }
 
-    for (const miner in miners) {
-        const newOption = document.createElement("option");
-        newOption.value = miner;
-        newOption.innerText = miner.charAt(0).toUpperCase() + miner.slice(1);
-        select.appendChild(newOption);
-    }
+    populateGroup(users);
+    populateGroup(miners);
 }
 
 populateSelectOptions(senderSelect);

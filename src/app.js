@@ -9,11 +9,12 @@ const users = {
     "hansolo": new NormalUser(blockChain, "Han Solo"),
     "obiwan": new NormalUser(blockChain, "Obi-wan Kenobi"),
     "quigon": new NormalUser(blockChain, "Qui-Gon Ginn"),
+    "ciri": new NormalUser(blockChain, "Cirilla Fiona Elen Riannon")
 };
 
 const miners = {
-    "geralt": new Miner(blockChain, "Geralt"),
-    "yennefer": new Miner(blockChain, "Yennefer"),
+    "geralt": new Miner(blockChain, "Geralt of Rivia"),
+    "yennefer": new Miner(blockChain, "Yennefer of Vengerberg"),
     "vesimir": new Miner(blockChain, "Vesimir")
 }
 
@@ -63,6 +64,7 @@ const transferMoney = async (from, to, amount) => {
             from.sendTransaction(newData);
             to.receiveTransaction(newData);
             const minerMessage = message + " Mined by " + miner.name + ".";
+            console.log(miner.saahilCoin);
             return [true, minerMessage];
         }
     }
