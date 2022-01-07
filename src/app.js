@@ -51,7 +51,7 @@ const transferMoney = async (from, to, amount) => {
                 if (status)
                     resolve([status, minerName, block]);
                 else
-                    resolve([status, minerName, block]);
+                    reject([status, minerName, block]);
             });
             promiseArray.push(promise);
         }
