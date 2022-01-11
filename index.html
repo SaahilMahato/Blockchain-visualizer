@@ -8,23 +8,21 @@
     <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
 <body>
-    <main>
-        <div class="visualize-area">
-            <div class="graph">
-
-            </div>
-            <div class="block-details">
-                <h2>Block Details</h2>
-                <div class="block-info">
-                    <p>Click on a block to view its details.</p>
-                </div>
-            </div>
+    <header>
+        <div>
+            <h1>BlockChain Visualizer</h1>
         </div>
-
+        <div>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </header>
+    <main>
         <div class="controls-area">
-
+            <h2>Make a new transaction</h2>
             <form class="transaction-form">
-                <h2>Add a new block</h2>
                 <div class="form-div">
                     <label for="sender">Sender: </label>
                     <select id="sender" name="sender">
@@ -43,16 +41,29 @@
                 </div>
 
                 <div class="form-div">
-                    <input id="add-button" type="submit">
+                    <input id="add-button" type="submit" value="Add">
                 </div>
             </form>
+
+        </div>
+
+        <div class="workspace">
+            <div class="graph">
+
+            </div>
 
             <div class="output-console">
                 
             </div>
-
         </div>
 
+        <div class="block-details">
+            <img src="./images/close.png" alt="cross-icon">
+            <h2>Block Details</h2>
+            <div class="block-info">
+                <p>Click on a block to view its details.</p>
+            </div>
+        </div>
     </main>
 
     <script src="src/index.js" type="module"></script>
