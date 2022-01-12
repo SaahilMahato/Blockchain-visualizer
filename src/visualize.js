@@ -116,7 +116,7 @@ transactionForm.addEventListener("submit", async (e) => {
 });
 
 const entitiesForm = document.querySelector(".entities-form");
-entitiesForm.addEventListener("submit", async (e) => {
+entitiesForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
     const name = data.get("name");
@@ -129,8 +129,12 @@ entitiesForm.addEventListener("submit", async (e) => {
         miners[key] = new Miner(blockChain, name);
     else ;
 
-    console.log(users, miners);
-
     populateSelectOptions(senderSelect);
     populateSelectOptions(receiverSelect);
 });
+
+const difficultyTargetInput = document.querySelector("#difficulty-target");
+difficultyTargetInput.addEventListener("change", (e) => {
+    e.preventDefault(e);
+    blockChain.difficultyTarget = parseInt(e.target.value);
+})

@@ -50,7 +50,7 @@ main {
     flex-direction: column;
 }
 
-.transaction-form, .entities-form {
+.transaction-form, .entities-form, .settings-form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -66,6 +66,10 @@ main {
     height: 30% !important;
 }
 
+.settings-form {
+    height: 10% !important;
+}
+
 button, input, select {
     padding: 0.5%;
     font-size: 20px;
@@ -73,11 +77,6 @@ button, input, select {
 
 select, input {
     width: 70%;
-}
-
-.transaction-form, .entities-form h2 {
-    justify-self: flex-start;
-    align-self: center;
 }
 
 .form-div {

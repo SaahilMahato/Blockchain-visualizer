@@ -4,6 +4,7 @@ class BlockChain {
     constructor() {
         this.blocks = [];
         this.initialize();
+        this.difficultyTarget = 4;
     }
 
     initialize = async () => {
@@ -33,10 +34,10 @@ class BlockChain {
 
     proofOfWork = async (data, currentTime, previousHash, nounce) => {
         let newBlockHash;
-        // simple proof of work that requires new hash to start from 4 0s
+        
         while(true) {
             newBlockHash = await this.hashData(JSON.stringify(data) + currentTime + previousHash + nounce);
-            if (newBlockHash.startsWith('0000'))
+            if (newBlockHash.startsWith('0'.repeat(this.difficultyTarget)))
                 break;
             ++nounce;
         }
