@@ -11,8 +11,8 @@ class Miner extends Node {
         super(blockChainCopy, name);
     }
 
-    receiveReward = () => {
-        this.saahilCoin += 1;
+    receiveReward = (reward) => {
+        this.saahilCoin += reward;
     }
 
     mine = async (data) => {

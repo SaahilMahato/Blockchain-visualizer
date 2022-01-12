@@ -1,4 +1,4 @@
-import { blockChain, users, miners, transferMoney } from "./app.js";
+import { blockChain, users, miners, config, transferMoney } from "./app.js";
 import { Miner, NormalUser } from "./nodes/users.js";
 
 const graph = document.querySelector(".graph");
@@ -110,7 +110,7 @@ transactionForm.addEventListener("submit", async (e) => {
     miningMessage.innerText = "Miners are mining ...";
     miningMessage.style.color = "blue";
     outputConsole.appendChild(miningMessage);
-    const [isTransfered, message] = await transferMoney(sender, receiver, amount);
+    const [isTransfered, message] = await transferMoney(sender, receiver, amount, config["reward"]);
     outputConsole.removeChild(miningMessage);
 
     addOutputToConsole(isTransfered, message);
@@ -142,7 +142,11 @@ difficultyTargetInput.addEventListener("change", (e) => {
     blockChain.difficultyTarget = parseInt(e.target.value);
 })
 
-
+const rewardInput = document.querySelector("#reward");
+rewardInput.addEventListener("change", (e) => {
+    e.preventDefault(e);
+    config["reward"] = parseInt(e.target.value);
+})
 
 // block details view
 

@@ -19,6 +19,10 @@ const miners = {
     "vesimir": new Miner(blockChain, "Vesimir")
 };
 
+const config = {
+    "reward": 1
+}
+
 const validateTransaction = (from, to, amount) => {
 
     if (!amount)
@@ -33,7 +37,7 @@ const validateTransaction = (from, to, amount) => {
     return [true, "Valid transaction. New Block added to chain."];
 }
 
-const transferMoney = async (from, to, amount) => {
+const transferMoney = async (from, to, amount, reward) => {
     const newData = {
         sender: from.name,
         receiver: to.name,
@@ -61,7 +65,7 @@ const transferMoney = async (from, to, amount) => {
 
         if (isMined) {
             blockChain.addBlock(block);
-            miner.receiveReward();
+            miner.receiveReward(reward);
             from.sendTransaction(newData);
             to.receiveTransaction(newData);
             const minerMessage = message + " Mined by " + miner.name + ".";
@@ -71,4 +75,4 @@ const transferMoney = async (from, to, amount) => {
     return [isValid, message];
 }
 
-export { blockChain, users, miners, transferMoney };
+export { blockChain, users, miners, config, transferMoney };
