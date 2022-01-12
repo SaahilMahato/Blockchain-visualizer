@@ -170,5 +170,3 @@ closeButtonBlockDetails.addEventListener("click", () => {
     resetBlockColor();
     hideBlockDetails();
 });
-
-hideBlockDetails();

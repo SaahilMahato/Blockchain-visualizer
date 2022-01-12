@@ -13,6 +13,7 @@ const users = {
 };
 
 const miners = {
+    "padme": new Miner(blockChain, "Padme Amidala"),
     "geralt": new Miner(blockChain, "Geralt of Rivia"),
     "yennefer": new Miner(blockChain, "Yennefer of Vengerberg"),
     "vesimir": new Miner(blockChain, "Vesimir")
