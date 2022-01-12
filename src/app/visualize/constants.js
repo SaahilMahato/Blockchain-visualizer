@@ -1,6 +1,3 @@
-import { blockChain, users, miners, transferMoney } from "../transaction.js";
-import { Miner, NormalUser } from "../../nodes/users.js";
-
 const graph = document.querySelector(".graph");
 const senderSelect = document.querySelector("#sender");
 const receiverSelect = document.querySelector("#receiver");

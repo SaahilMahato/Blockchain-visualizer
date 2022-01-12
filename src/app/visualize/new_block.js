@@ -65,8 +65,6 @@ const addBlockToGraph = () => {
     graph.appendChild(newBlockGraph);
 }
 
-setTimeout(() => {
-    addBlockToGraph();
-}, 0);
+setTimeout(addBlockToGraph, 100);
 
 export default addBlockToGraph;

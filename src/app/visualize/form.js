@@ -39,9 +39,6 @@ const populateSelectOptions = (select) => {
     populateGroup(miners);
 }
 
-populateSelectOptions(senderSelect);
-populateSelectOptions(receiverSelect);
-
 transactionForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -84,3 +81,7 @@ settingsForm.addEventListener("submit", (e) => {
     blockChain.updateDifficulty(parseInt(data.get("difficulty")));
     blockChain.updateReward(parseInt(data.get("reward")));
 });
+
+
+populateSelectOptions(senderSelect);
+populateSelectOptions(receiverSelect);
