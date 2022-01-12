@@ -1,4 +1,5 @@
 import { blockChain, users, miners, transferMoney } from "./app.js";
+import { Miner, NormalUser } from "./nodes/users.js";
 
 const graph = document.querySelector(".graph");
 const senderSelect = document.querySelector("#sender");
@@ -75,6 +76,8 @@ const populateSelectOptions = (select) => {
         }
     }
 
+    select.textContent = '';
+
     populateGroup(users);
     populateGroup(miners);
 }
@@ -110,4 +113,24 @@ transactionForm.addEventListener("submit", async (e) => {
     addOutputToConsole(isTransfered, message);
     if (isTransfered) 
         setTimeout(addBlockToGraph, 100);
+});
+
+const entitiesForm = document.querySelector(".entities-form");
+entitiesForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const name = data.get("name");
+    const type = data.get("type");
+    const key = name.split(' ')[0].toLowerCase();
+
+    if (type === "users")
+        users[key] = new NormalUser(blockChain, name);
+    else if (type === "miners")
+        miners[key] = new Miner(blockChain, name);
+    else ;
+
+    console.log(users, miners);
+
+    populateSelectOptions(senderSelect);
+    populateSelectOptions(receiverSelect);
 });
