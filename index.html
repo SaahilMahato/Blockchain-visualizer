@@ -43,7 +43,7 @@
             <form class="entities-form">
                 <div class="form-div">
                     <label for="name">Username:</label>
-                    <input id="name" type="text" name="name">
+                    <input id="name" type="text" name="name" required>
                 </div>
 
                 <div class="form-div">
@@ -62,13 +62,17 @@
             <h2>Settings</h2>
             <form class="settings-form">
                 <div class="form-div">
-                    <label for="difficulty-target">Difficulty:</label>
-                    <input id = "difficulty-target" type="number" name="difficulty-target" value="4">
+                    <label for="difficulty">Difficulty:</label>
+                    <input id = "difficulty" type="number" name="difficulty" value="4" min="1" max="8" required>
                 </div>
 
                 <div class="form-div">
                     <label for="reward">Reward:</label>
-                    <input id = "reward" type="number" name="reward" value="1">
+                    <input id = "reward" type="number" name="reward" value="1" min="1" required>
+                </div>
+
+                <div class="form-div">
+                    <input class="add-button" type="submit" value="Save">
                 </div>
             </form>
 

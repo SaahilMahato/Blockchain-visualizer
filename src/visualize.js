@@ -136,17 +136,13 @@ entitiesForm.addEventListener("submit", (e) => {
     populateSelectOptions(receiverSelect);
 });
 
-const difficultyTargetInput = document.querySelector("#difficulty-target");
-difficultyTargetInput.addEventListener("change", (e) => {
-    e.preventDefault(e);
-    blockChain.difficultyTarget = parseInt(e.target.value);
-})
-
-const rewardInput = document.querySelector("#reward");
-rewardInput.addEventListener("change", (e) => {
-    e.preventDefault(e);
-    config["reward"] = parseInt(e.target.value);
-})
+const settingsForm = document.querySelector(".settings-form");
+settingsForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    blockChain.difficultyTarget = parseInt(data.get("difficulty"));
+    config["reward"] = parseInt(data.get("reward"));
+});
 
 // block details view
 
