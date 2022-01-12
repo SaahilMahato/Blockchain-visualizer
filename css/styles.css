@@ -42,6 +42,10 @@ main {
     background-color: #FAFAFA;
 }
 
+.workspace h2 {
+    height: 3%;
+}
+
 .block-details {
     width: 20%;
     height: 100%;
