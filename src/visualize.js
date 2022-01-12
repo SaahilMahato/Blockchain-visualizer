@@ -21,7 +21,7 @@ const addBlockToGraph = () => {
     newBlockGraph.classList.add("block-graph");
 
     newBlockGraph.style.backgroundColor = "yellow";
-    newBlockGraph.innerText = newBlock.id;
+    newBlockGraph.innerText = newBlock.amount + " SC";
 
     newBlockGraph.addEventListener("click", ()=> {
         resetBlockColor();
@@ -161,9 +161,8 @@ const showBlockDetails = () => {
 
 const resetBlockColor = () => {
     const blockGraphs = document.getElementsByClassName("block-graph");
-    for (let i=0; i<blockGraphs.length; i++) {
+    for (let i=0; i<blockGraphs.length; i++)
         blockGraphs[i].style.backgroundColor = "yellow";
-    }
 }
 
 const closeButtonBlockDetails = document.querySelector("#close-button-block-details");
