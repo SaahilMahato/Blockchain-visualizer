@@ -18,12 +18,15 @@ const addBlockToGraph = () => {
     newBlockGraph.setAttribute("receiver", newBlock.receiver);
     newBlockGraph.setAttribute("amount", newBlock.amount + " SaahilCoins");
     newBlockGraph.setAttribute("hash", newBlock.hash);
+    newBlockGraph.classList.add("block-graph");
 
-    
-    newBlockGraph.style.backgroundColor = newBlock.id !== 0? "red": "yellow";
+    newBlockGraph.style.backgroundColor = "yellow";
     newBlockGraph.innerText = newBlock.id;
 
     newBlockGraph.addEventListener("click", ()=> {
+        resetBlockColor();
+        newBlockGraph.style.backgroundColor = "red";
+        showBlockDetails();
         blockInfo.textContent = "";
         const previousHashParagraph = document.createElement("p");
         const idParagraph = document.createElement("p");
@@ -138,3 +141,35 @@ difficultyTargetInput.addEventListener("change", (e) => {
     e.preventDefault(e);
     blockChain.difficultyTarget = parseInt(e.target.value);
 })
+
+
+
+// block details view
+
+const workspace = document.querySelector(".workspace");
+const blockDetails = document.querySelector(".block-details");
+
+const hideBlockDetails = () => {
+    workspace.style.width = "80%";
+    blockDetails.style.display = "none";
+}
+
+const showBlockDetails = () => {
+    workspace.style.width = "60%";
+    blockDetails.style.display = "flex";
+}
+
+const resetBlockColor = () => {
+    const blockGraphs = document.getElementsByClassName("block-graph");
+    for (let i=0; i<blockGraphs.length; i++) {
+        blockGraphs[i].style.backgroundColor = "yellow";
+    }
+}
+
+const closeButtonBlockDetails = document.querySelector("#close-button-block-details");
+closeButtonBlockDetails.addEventListener("click", () => {
+    resetBlockColor();
+    hideBlockDetails();
+});
+
+hideBlockDetails();
