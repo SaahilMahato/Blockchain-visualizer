@@ -1,5 +1,5 @@
-import BlockChain from "./block_chain/block_chain.js";
-import { NormalUser, Miner } from "./nodes/users.js";
+import BlockChain from "../block_chain/block_chain.js";
+import { NormalUser, Miner } from "../nodes/users.js";
 
 const blockChain = new BlockChain();
 const users = {
@@ -18,10 +18,6 @@ const miners = {
     "yennefer": new Miner(blockChain, "Yennefer of Vengerberg"),
     "vesimir": new Miner(blockChain, "Vesimir")
 };
-
-const config = {
-    "reward": 1
-}
 
 const validateTransaction = (from, to, amount) => {
 
@@ -75,4 +71,4 @@ const transferMoney = async (from, to, amount, reward) => {
     return [isValid, message];
 }
 
-export { blockChain, users, miners, config, transferMoney };
+export { blockChain, users, miners, transferMoney };

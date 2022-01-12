@@ -1,1 +1,1 @@
-import "./visualize.js";
+import "./app/visualize.js";

@@ -1,5 +1,5 @@
-import { blockChain, users, miners, config, transferMoney } from "./app.js";
-import { Miner, NormalUser } from "./nodes/users.js";
+import { blockChain, users, miners, transferMoney } from "./transaction.js";
+import { Miner, NormalUser } from "../nodes/users.js";
 
 const graph = document.querySelector(".graph");
 const senderSelect = document.querySelector("#sender");
@@ -26,7 +26,6 @@ const addBlockToGraph = () => {
     newBlockGraph.addEventListener("click", ()=> {
         resetBlockColor();
         newBlockGraph.style.backgroundColor = "red";
-        showBlockDetails();
         blockInfo.textContent = "";
         const previousHashParagraph = document.createElement("p");
         const idParagraph = document.createElement("p");
@@ -53,6 +52,7 @@ const addBlockToGraph = () => {
             amountParagraph,
             hashParagraph
         );
+        showBlockDetails();
     });
     
     if (newBlock.id !== 0) {
@@ -110,12 +110,11 @@ transactionForm.addEventListener("submit", async (e) => {
     miningMessage.innerText = "Miners are mining ...";
     miningMessage.style.color = "blue";
     outputConsole.appendChild(miningMessage);
-    const [isTransfered, message] = await transferMoney(sender, receiver, amount, config["reward"]);
+    const [isTransfered, message] = await transferMoney(sender, receiver, amount, blockChain.reward);
     outputConsole.removeChild(miningMessage);
 
     addOutputToConsole(isTransfered, message);
-    if (isTransfered) 
-        setTimeout(addBlockToGraph, 100);
+    if (isTransfered) addBlockToGraph();
 });
 
 const entitiesForm = document.querySelector(".entities-form");
@@ -140,8 +139,8 @@ const settingsForm = document.querySelector(".settings-form");
 settingsForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    blockChain.difficultyTarget = parseInt(data.get("difficulty"));
-    config["reward"] = parseInt(data.get("reward"));
+    blockChain.updateDifficulty(parseInt(data.get("difficulty")));
+    blockChain.updateReward(parseInt(data.get("reward")));
 });
 
 // block details view

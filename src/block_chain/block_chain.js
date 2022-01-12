@@ -5,6 +5,7 @@ class BlockChain {
         this.blocks = [];
         this.initialize();
         this.difficultyTarget = 4;
+        this.reward = 1;
     }
 
     initialize = async () => {
@@ -20,9 +21,11 @@ class BlockChain {
         this.blocks.push(genesisBlock);
     }
 
-    addBlock = (block) => {
-        this.blocks.push(block);
-    }
+    addBlock = block => this.blocks.push(block);
+
+    updateDifficulty = newValue => this.difficultyTarget = newValue;
+
+    updateReward = newValue => this.reward = newValue;
 
     createBlock = async (data, nounce) => {
         const previousHash = this.blocks[this.blocks.length - 1].hash;
