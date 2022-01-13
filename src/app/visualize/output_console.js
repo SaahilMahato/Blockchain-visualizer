@@ -7,11 +7,11 @@ import { outputConsole } from "./dom_elements.js";
 
 
 /**
+ * Adds message of events to the console.
  * 
- * @param {boolean} isTransfered - the status of the output
- * @param {string} message - The output message 
+ * @param {boolean} isTransfered - the status of the output.
+ * @param {string} message - The output message.
  */
-
 const addOutputToConsole = (isTransfered, message) => {
     const newOutupt = document.createElement("p");
     const currentTime = new Date().toLocaleString();

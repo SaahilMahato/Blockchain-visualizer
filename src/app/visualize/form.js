@@ -29,17 +29,15 @@ import addBlockToGraph from "./new_block.js";
 
 
 /**
- * populates the select element of transaction form with all entities
- * @param {HTMLSelectElement} select - the select element of transaction form
+ * Populates the select element of transaction form with all entities.
+ * 
+ * @param {HTMLSelectElement} select - the select element of transaction form.
  */
-
 const populateSelectOptions = (select) => {
     
     /**
-     * populate select with a certain group (miner or users)
-     * @returns {undefined}
+     * Populate select with a certain group (miner or users).
      */
-
     const populateGroup = (group) => {
         for (const user in group) {
             const newOption = document.createElement("option");
@@ -57,10 +55,8 @@ const populateSelectOptions = (select) => {
 
 
 /**
- * creates new transaction on submit
- * @returns {undefined} 
+ * Creates new transaction on submit.
  */
-
 transactionForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -81,10 +77,8 @@ transactionForm.addEventListener("submit", async (e) => {
 
 
 /**
- * creates new entity on submit
- * @returns {undefined}
+ * Creates new entity on submit.
  */
-
 entitiesForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -108,10 +102,8 @@ entitiesForm.addEventListener("submit", (e) => {
 
 
 /**
- * adjusts blockChain settings on submit
- * @returns {undefined}
+ * Adjusts blockChain settings on submit.
  */
-
 settingsForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -127,6 +119,6 @@ settingsForm.addEventListener("submit", (e) => {
     addOutputToConsole(true, `New BlockChain configuration. Difficulty Target: ${difficulty}, Mining reward: ${reward}, Hashing Algorithm: ${hash}`);
 });
 
-// populate select at the start of program
+// populate select of transaction form at the start of program
 populateSelectOptions(senderSelect);
 populateSelectOptions(receiverSelect);

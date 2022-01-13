@@ -16,10 +16,8 @@ import {
 
 
 /**
- * adds a new block to graph in visualization area
- * @returns {undefined}
+ * Adds a new block to graph in visualization area.
  */
-
 const addBlockToGraph = () => {
     const newBlock = blockChain.blocks[blockChain.blocks.length - 1]; // new block is always at the last of the blockChain
 
@@ -42,12 +40,11 @@ const addBlockToGraph = () => {
 
 
     /**
-     * view block details on click
-     * @returns {undefined}
+     * View block details on click.
      */
-
     newBlockGraph.addEventListener("click", ()=> {
         resetBlockColor();
+
         // set color of clicked block to red
         newBlockGraph.style.backgroundColor = "red";
 
@@ -100,7 +97,7 @@ const addBlockToGraph = () => {
 }
 
 
-// add genesis block to graph on start. use set timeout because creating block takes time 
+// add genesis block to graph on start. use set timeout because creating genesis block takes time 
 setTimeout(addBlockToGraph, 100);
 
 

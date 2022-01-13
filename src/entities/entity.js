@@ -7,11 +7,11 @@
 class Entity {
 
     /**
-     * constructor of the class
+     * Constructor of the class.
+     * 
      * @param {BlockChain} blockChain - block chain of the network
      * @param {string} name - name of the node
      */
-
     constructor(blockChain, name) {
         this.name = name;
         this.saahilCoin = 100.0; // each node has 100 SaahilCoins by default
@@ -20,27 +20,24 @@ class Entity {
     }
 
     /**
-     * increases SaahilCoin on receiving
-     * @param {object} data - transaction data 
-     * @returns {undefined}
+     * Increases SaahilCoin on receive.
+     * 
+     * @param {object} data - transaction data
      */
-
     receiveTransaction = data => this.saahilCoin += data.amount;
 
     /**
-     * decreases SaahilCoin on send
+     * Decreases SaahilCoin on send.
+     * 
      * @param {object} data - transaction data 
-     * @returns {undefined}
      */
-
     sendTransaction = data => this.saahilCoin -= data.amount;
 
     /**
-     * updates local block chain
+     * Updates local block chain.
+     * 
      * @param {BlockChain} newBlockChain - blockChain of the network
-     * @returns {undefined}
      */
-
     updateBlockChain = newBlockChain => this.localBlockChain = [...newBlockChain.blocks];
 }
 

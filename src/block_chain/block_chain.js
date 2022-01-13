@@ -6,6 +6,7 @@
 
 import Block from "./block.js";
 
+
 // BlockChain class
 class BlockChain {
 
@@ -19,7 +20,7 @@ class BlockChain {
     }
 
     /**
-     * @returns {undefined} - creates the genesis block
+     * Initializes the blockChain by creating new block.
      */
     initialize = async () => {
 
@@ -37,44 +38,41 @@ class BlockChain {
     }
 
     /**
-     * Just adds block to the chain
-     * @param {Block} block - A block object
-     * @returns {undefined}
+     * Adds block to the chain.
+     * 
+     * @param {Block} block - A block object.
      */
-
     addBlock = block => this.blocks.push(block);
 
     /**
-     * updates difficulty target of the blockchain
-     * @param {number} newDifficulty - difficulty target of the proof of work 
-     * @returns {undefined}
+     * Updates difficulty target of the blockchain.
+     * 
+     * @param {number} newDifficulty - difficulty target of the proof of work.
      */
-
     updateDifficulty = newDifficulty => this.difficultyTarget = newDifficulty;
 
     /**
-     * updates the reward
-     * @param {number} newReward - reward miner should receive after mining a block
-     * @returns {undefined}
+     * Updates the reward.
+     * 
+     * @param {number} newReward - reward miner should receive after mining a block.
      */
-
     updateReward = newReward => this.reward = newReward;
 
     /**
-     * updates the hash algorithm
-     * @param {string} newHash - hash Algorithm. can be one of SHA-1, SHA-256, SHA-385, SHA-512
-     * @returns {undefined}
+     * Updates the hash algorithm.
+     * 
+     * @param {string} newHash - hash Algorithm. can be one of SHA-1, SHA-256, SHA-384, SHA-512.
      */
-
     updateHash = newHash => this.hashAlgorithm = newHash;
 
     /**
-     * creates a new block
-     * @param {object} data - the transaction data that the block will store
-     * @param {number} nounce - the number that is appended to the data to be hashed to create variety during proof of work
+     * Creates a new block.
+     * 
+     * @param {object} data - the transaction data that the block will store.
+     * @param {number} nounce - the number that is appended to the data to be hashed to create variety during proof of work.
+     * 
      * @returns {Block} - Newly created block
      */
-
     createBlock = async (data, nounce) => {
         const previousHash = this.blocks[this.blocks.length - 1].hash; // the previous hash will always be the hash of the last block in the chain
         const currentTime = new Date();
@@ -84,14 +82,15 @@ class BlockChain {
     }
 
     /**
-     * performs proof of work on the block
-     * @param {object} data - the transaction data that the block will store
-     * @param {string} currentTime - the time that proof of work started
-     * @param {string} previousHash - the hash of the previous block
-     * @param {number} nounce - append to data to be hashed hash
-     * @returns {string} - hash of the new block
+     * Performs proof of work on the block.
+     * 
+     * @param {object} data - the transaction data that the block will store.
+     * @param {string} currentTime - the time that proof of work started.
+     * @param {string} previousHash - the hash of the previous block.
+     * @param {number} nounce - append to data to be hashed hash.
+     * 
+     * @returns {string} - hash of the new block.
      */
-
     performProofOfWork = async (data, currentTime, previousHash, nounce) => {
         let newBlockHash;
         
@@ -110,22 +109,24 @@ class BlockChain {
     }
 
     /**
-     * hashes the data
-     * @param {string} dataToHash - data + currentTime + previousHash + nounce
-     * @returns {string} - The hash of the data in hexadecimal format
+     * Hashes the data.
+     * 
+     * @param {string} dataToHash - data + currentTime + previousHash + nounce.
+     * 
+     * @returns {string} - The hash of the data in hexadecimal format.
      */
-
     hashData = async (dataToHash) => {
         const digest = await this.digestData(dataToHash);
         return this.digestToHex(digest);
     }
 
     /**
-     * sends data to API and receives hash as Array buffer
-     * @param {string} dataToHash - data + currentTime + previousHash + nounce
-     * @returns {ArrayBuffer} - array buffer of hash of the data
+     * Sends data to API and receives hash as Array buffer.
+     * 
+     * @param {string} dataToHash - data + currentTime + previousHash + nounce.
+     * 
+     * @returns {ArrayBuffer} - array buffer of hash of the data.
      */
-
     digestData = async (dataToHash) => {
         const dataEncoded = new TextEncoder().encode(dataToHash); // encode as utf-8 
         const hashBuffer = await crypto.subtle.digest(this.hashAlgorithm, dataEncoded); // hash the message using API 
@@ -133,9 +134,11 @@ class BlockChain {
     }
 
     /**
-     * convers array buffer to hexadecimal
-     * @param {ArrayBuffer} hashBuffer - the array buffer received from API 
-     * @returns {string} - hex string of the hash
+     * Converts array buffer to hexadecimal.
+     * 
+     * @param {ArrayBuffer} hashBuffer - the array buffer received from API.
+     * 
+     * @returns {string} - hex string of the hash.
      */
     digestToHex = (hashBuffer) => {
         const hashArray = Array.from (new Uint8Array(hashBuffer)); // convert buffer to byte array

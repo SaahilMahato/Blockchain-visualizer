@@ -34,13 +34,14 @@ const miners = {
 
 
 /**
- * validates transaction
- * @param {NormalUser / Miner} from - Sender 
- * @param {NormalUser / Miner} to - Receiver
- * @param {number} amount - the transaction amnount
- * @returns {Array} -  Array that containes [validation status, validation message]
+ * Validates transaction.
+ * 
+ * @param {NormalUser | Miner} from - Sender.
+ * @param {NormalUser | Miner} to - Receiver.
+ * @param {number} amount - the transaction amnount.
+ * 
+ * @returns {Array<[boolean, string]>} -  Array that containes [validation status, validation message].
  */
-
 const validateTransaction = (from, to, amount) => {
 
     // SaahilCoin should be involved
@@ -60,10 +61,8 @@ const validateTransaction = (from, to, amount) => {
 
 
 /**
- * updates local block chain of all entities
- * @returns {undefined} 
+ * Updates local block chain of all entities.
  */
-
 const updateBlockChainOfAllEntities = () => {
     for (const user in users)
         users[user].updateBlockChain(blockChain);
@@ -73,14 +72,15 @@ const updateBlockChainOfAllEntities = () => {
 
 
 /**
- * transfers SaahilCoins
- * @param {NormalUser / Miner} from - Sender
- * @param {NormalUser / Miner} to - Receiver
- * @param {number} amount - the transaction amnount
- * @param {number} reward - the mining reward
- * @returns {Array} - array that contains [transaction status, message] 
+ * Transfers SaahilCoins.
+ * 
+ * @param {NormalUser | Miner} from - Sender.
+ * @param {NormalUser | Miner} to - Receiver.
+ * @param {number} amount - the transaction amnount.
+ * @param {number} reward - the mining reward.
+ * 
+ * @returns {Array<[boolean, string]>} - array that contains [transaction status, message].
  */
-
 const transferMoney = async (from, to, amount, reward) => {
 
     // create data to be stored in block
@@ -114,7 +114,7 @@ const transferMoney = async (from, to, amount, reward) => {
             promiseArray.push(promise);
         }
         
-        // Use promise.race with the promise array so the miner that finished mining first returns it's status and created block
+        // Use promise.race with the promise array so the miner that finished mining first returns it's status and created block.
         const [isMined, miner, block] = await Promise.race(promiseArray);
 
         // if mined update the entities in the network
