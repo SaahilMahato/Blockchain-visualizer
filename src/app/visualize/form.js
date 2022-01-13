@@ -60,7 +60,7 @@ transactionForm.addEventListener("submit", async (e) => {
 entitiesForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    const name = data.get("name");
+    const name = data.get("name").trim();
     const type = data.get("type");
     const key = name.split(' ')[0].toLowerCase();
 
@@ -72,15 +72,23 @@ entitiesForm.addEventListener("submit", (e) => {
 
     populateSelectOptions(senderSelect);
     populateSelectOptions(receiverSelect);
+
+    addOutputToConsole(true, `New user added. Name: ${name}, Type: ${type}`);
 });
 
 
 settingsForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    blockChain.updateDifficulty(parseInt(data.get("difficulty")));
-    blockChain.updateReward(parseInt(data.get("reward")));
-    blockChain.updateHash(data.get("hash"));
+    const difficulty = parseInt(data.get("difficulty"));
+    const reward = parseFloat(data.get("reward"));
+    const hash = data.get("hash");
+
+    blockChain.updateDifficulty(difficulty);
+    blockChain.updateReward(reward);
+    blockChain.updateHash(hash);
+
+    addOutputToConsole(true, `New BlockChain configuration. Difficulty Target: ${difficulty}, Mining reward: ${reward}, Hashing Algorithm: ${hash}`);
 });
 
 
