@@ -24,9 +24,9 @@ class Miner extends Node {
         }
 
         const nounce = getRandomInt(0, 100);
-        const [isMined, block] = await this.localBlockChain.createBlock(data, nounce);
+        const block = await this.localBlockChain.createBlock(data, nounce);
         
-        if (isMined)
+        if (block)
             return [true, this, block];
         return false;
     }
