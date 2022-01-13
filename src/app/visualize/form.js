@@ -22,7 +22,7 @@ import {
     senderSelect, 
     receiverSelect,
     outputConsole
-} from "./constants.js";
+} from "./dom_elements.js";
 
 import addOutputToConsole from "./output_console.js";
 import addBlockToGraph from "./new_block.js";

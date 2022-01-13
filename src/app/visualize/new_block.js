@@ -7,7 +7,7 @@ import { blockChain } from "../transaction.js";
 import { 
     graph,
     blockInfo,
-} from "./constants.js";
+} from "./dom_elements.js";
 
 import { 
     resetBlockColor,

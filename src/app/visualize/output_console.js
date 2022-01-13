@@ -3,7 +3,7 @@
  */
 
 
-import { outputConsole } from "./constants.js";
+import { outputConsole } from "./dom_elements.js";
 
 
 /**

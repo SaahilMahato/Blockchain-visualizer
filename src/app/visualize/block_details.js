@@ -7,7 +7,7 @@ import {
     workspace,
     blockDetails,
     closeButtonBlockDetails
-} from "./constants.js";
+} from "./dom_elements.js";
 
 
 /**

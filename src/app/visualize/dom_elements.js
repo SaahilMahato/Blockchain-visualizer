@@ -1,5 +1,5 @@
 /**
- * @module constants
+ * @module dom_elements
  */
 
 // div DOM elements
