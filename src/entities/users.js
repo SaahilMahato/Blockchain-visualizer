@@ -3,16 +3,16 @@
  */
 
 
-import Node from "./node.js";
+import Entity from "./entity.js";
 
 
 //Normal user class
-class NormalUser extends Node {
+class NormalUser extends Entity {
 
     /**
      * constructor of the class
      * @param {BlockChain} blockChain - block chain of the network
-     * @param {*} name - Name of the node
+     * @param {*} name - Name of the entity
      */
 
     constructor(blockChain, name) {
@@ -22,12 +22,12 @@ class NormalUser extends Node {
 
 
 // Miner class
-class Miner extends Node {
+class Miner extends Entity {
 
     /**
      * constructor of the class
      * @param {BlockChain} blockChain - block chain of the network
-     * @param {*} name - Name of the node
+     * @param {*} name - Name of the entity
      */
 
     constructor(blockChain, name) {
@@ -75,4 +75,7 @@ class Miner extends Node {
 }
 
 
-export { NormalUser, Miner };
+export { 
+    NormalUser, 
+    Miner 
+};

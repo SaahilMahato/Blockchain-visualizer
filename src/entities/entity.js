@@ -1,10 +1,10 @@
 /**
- * @module Node
+ * @module Entity
  */
 
 
 // Node class
-class Node {
+class Entity {
 
     /**
      * constructor of the class
@@ -45,4 +45,4 @@ class Node {
 }
 
 
-export default Node;
+export default Entity;

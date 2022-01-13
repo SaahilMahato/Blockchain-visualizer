@@ -1,4 +1,16 @@
+/**
+ * @module output_console
+ */
+
+
 import { outputConsole } from "./constants.js";
+
+
+/**
+ * 
+ * @param {boolean} isTransfered - the status of the output
+ * @param {string} message - The output message 
+ */
 
 const addOutputToConsole = (isTransfered, message) => {
     const newOutupt = document.createElement("p");
@@ -8,5 +20,6 @@ const addOutputToConsole = (isTransfered, message) => {
     newOutupt.style.color = textColor;
     outputConsole.appendChild(newOutupt);
 }
+
 
 export default addOutputToConsole;

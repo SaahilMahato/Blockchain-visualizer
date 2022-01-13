@@ -1,18 +1,41 @@
+/**
+ * @module block_details
+ */
+
+
 import { 
     workspace,
-    blockDetails 
+    blockDetails,
+    closeButtonBlockDetails
 } from "./constants.js";
 
+
+/**
+ * hides block details when close button is clicked
+ * @returns {undefined}
+ */
 
 const hideBlockDetails = () => {
     workspace.style.width = "80%";
     blockDetails.style.display = "none";
 }
 
+
+/**
+ * shows block details when block is clicked
+ * @returns {undefined}
+ */
+
 const showBlockDetails = () => {
     workspace.style.width = "60%";
     blockDetails.style.display = "flex";
 }
+
+
+/**
+ * resets colors of block to yellow when new block or close button is clicked
+ * @returns {undefined}
+ */
 
 const resetBlockColor = () => {
     const blockGraphs = document.getElementsByClassName("block-graph");
@@ -20,11 +43,18 @@ const resetBlockColor = () => {
         blockGraphs[i].style.backgroundColor = "yellow";
 }
 
-const closeButtonBlockDetails = document.querySelector("#close-button-block-details");
+// DOM element close button
+
+
+/**
+ * event listener that resets block color and closes block details when close is clicked
+ * @returns {undefined}
+ */
 closeButtonBlockDetails.addEventListener("click", () => {
     resetBlockColor();
     hideBlockDetails();
 });
+
 
 export {
     hideBlockDetails,

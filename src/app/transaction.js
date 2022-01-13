@@ -4,10 +4,11 @@
 
 
 import BlockChain from "../block_chain/block_chain.js";
+
 import { 
     NormalUser, 
     Miner 
-} from "../nodes/users.js";
+} from "../entities/users.js";
 
 
 const blockChain = new BlockChain(); // create blockChain object
@@ -31,8 +32,6 @@ const miners = {
     "vesimir": new Miner(blockChain, "Vesimir")
 };
 
-// entities stores both users and miners
-const entities = {...users, ...miners};
 
 /**
  * validates transaction
@@ -66,8 +65,10 @@ const validateTransaction = (from, to, amount) => {
  */
 
 const updateBlockChainOfAllEntities = () => {
-    for (const entity in entities)
-        entities[entity].updateBlockChain(blockChain);
+    for (const user in users)
+        users[user].updateBlockChain(blockChain);
+    for (const miner in miners)
+        miners[miner].updateBlockChain(blockChain);
 }
 
 
@@ -97,7 +98,7 @@ const transferMoney = async (from, to, amount, reward) => {
         /*
         In order to simulate mining competition, first a array was created,
         then promise objects that containes function to mine by one miner each
-        was created. Then it was push to the array. 
+        was created. Then it was pushed to the array. 
         */
 
         const promiseArray = [];
@@ -131,4 +132,9 @@ const transferMoney = async (from, to, amount, reward) => {
 }
 
 
-export { blockChain, users, miners, transferMoney };
+export { 
+    blockChain, 
+    users, 
+    miners, 
+    transferMoney 
+};

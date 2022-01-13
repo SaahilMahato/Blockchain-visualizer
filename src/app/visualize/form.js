@@ -1,3 +1,8 @@
+/**
+ * @module form
+ */
+
+
 import { 
     blockChain, 
     users, 
@@ -8,7 +13,7 @@ import {
 import { 
     NormalUser,
     Miner
-} from "../../nodes/users.js";
+} from "../../entities/users.js";
 
 import { 
     transactionForm, 
@@ -22,8 +27,19 @@ import {
 import addOutputToConsole from "./output_console.js";
 import addBlockToGraph from "./new_block.js";
 
+
+/**
+ * populates the select element of transaction form with all entities
+ * @param {HTMLSelectElement} select - the select element of transaction form
+ */
+
 const populateSelectOptions = (select) => {
     
+    /**
+     * populate select with a certain group (miner or users)
+     * @returns {undefined}
+     */
+
     const populateGroup = (group) => {
         for (const user in group) {
             const newOption = document.createElement("option");
@@ -33,11 +49,17 @@ const populateSelectOptions = (select) => {
         }
     }
 
-    select.textContent = '';
+    select.textContent = ''; // clear select before populating
 
-    populateGroup(users);
-    populateGroup(miners);
+    populateGroup(users); // populate with users
+    populateGroup(miners); // populate with miners
 }
+
+
+/**
+ * creates new transaction on submit
+ * @returns {undefined} 
+ */
 
 transactionForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -57,6 +79,12 @@ transactionForm.addEventListener("submit", async (e) => {
     if (isTransfered) addBlockToGraph();
 });
 
+
+/**
+ * creates new entity on submit
+ * @returns {undefined}
+ */
+
 entitiesForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -64,18 +92,25 @@ entitiesForm.addEventListener("submit", (e) => {
     const type = data.get("type");
     const key = name.split(' ')[0].toLowerCase();
 
+    // creates new entity based on type
     if (type === "users")
         users[key] = new NormalUser(blockChain, name);
     else if (type === "miners")
         miners[key] = new Miner(blockChain, name);
     else ;
 
+    // populate select again after entity creation
     populateSelectOptions(senderSelect);
     populateSelectOptions(receiverSelect);
 
     addOutputToConsole(true, `New user added. Name: ${name}, Type: ${type}`);
 });
 
+
+/**
+ * adjusts blockChain settings on submit
+ * @returns {undefined}
+ */
 
 settingsForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -84,6 +119,7 @@ settingsForm.addEventListener("submit", (e) => {
     const reward = parseFloat(data.get("reward"));
     const hash = data.get("hash");
 
+    // update blockChain settings
     blockChain.updateDifficulty(difficulty);
     blockChain.updateReward(reward);
     blockChain.updateHash(hash);
@@ -91,6 +127,6 @@ settingsForm.addEventListener("submit", (e) => {
     addOutputToConsole(true, `New BlockChain configuration. Difficulty Target: ${difficulty}, Mining reward: ${reward}, Hashing Algorithm: ${hash}`);
 });
 
-
+// populate select at the start of program
 populateSelectOptions(senderSelect);
 populateSelectOptions(receiverSelect);
