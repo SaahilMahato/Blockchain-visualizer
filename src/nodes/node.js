@@ -2,6 +2,7 @@
  * @module Node
  */
 
+
 // Node class
 class Node {
 
@@ -15,7 +16,7 @@ class Node {
         this.name = name;
         this.saahilCoin = 100.0; // each node has 100 SaahilCoins by default
         // dont create reference but create new instance of the object
-        this.localBlockChain = Object.assign(Object.create(Object.getPrototypeOf(blockChain)), blockChain) 
+        this.localBlockChain = [...blockChain.blocks];
     }
 
     /**
@@ -40,7 +41,7 @@ class Node {
      * @returns {undefined}
      */
 
-    updateBlockChain = newBlockChain => this.localBlockChain = Object.assign(Object.create(Object.getPrototypeOf(newBlockChain)), newBlockChain);
+    updateBlockChain = newBlockChain => this.localBlockChain = [...newBlockChain.blocks];
 }
 
 
