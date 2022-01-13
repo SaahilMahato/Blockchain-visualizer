@@ -80,6 +80,7 @@ settingsForm.addEventListener("submit", (e) => {
     const data = new FormData(e.target);
     blockChain.updateDifficulty(parseInt(data.get("difficulty")));
     blockChain.updateReward(parseInt(data.get("reward")));
+    blockChain.updateHash(data.get("hash"));
 });
 
 

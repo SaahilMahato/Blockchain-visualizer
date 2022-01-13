@@ -63,7 +63,7 @@ main {
     height: 40%;
     font-size: 20px;
     background-color: #FFFFFF;
-    padding: 5%;
+    padding: 0 5% ;
 }
 
 .entities-form {

@@ -3,9 +3,10 @@ import Block from "./block.js";
 class BlockChain {
     constructor() {
         this.blocks = [];
-        this.initialize();
         this.difficultyTarget = 4;
         this.reward = 1;
+        this.hashAlgorithm = "SHA-256";
+        this.initialize();
     }
 
     initialize = async () => {
@@ -26,6 +27,8 @@ class BlockChain {
     updateDifficulty = newValue => this.difficultyTarget = newValue;
 
     updateReward = newValue => this.reward = newValue;
+
+    updateHash = newValue => this.hashAlgorithm = newValue;
 
     createBlock = async (data, nounce) => {
         const previousHash = this.blocks[this.blocks.length - 1].hash;
@@ -54,7 +57,7 @@ class BlockChain {
 
     digestData = async (data) => {
         const dataEncoded = new TextEncoder().encode(data); // encode as utf-8 
-        const hashBuffer = await crypto.subtle.digest('SHA-256', dataEncoded); // hash the message
+        const hashBuffer = await crypto.subtle.digest(this.hashAlgorithm, dataEncoded); // hash the message
         return hashBuffer;
     }
 
