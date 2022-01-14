@@ -11,7 +11,7 @@ import {
 } from "../entities/users.js";
 
 
-const blockChain = new BlockChain(); // create blockChain object
+const blockChain = new BlockChain(); // create BlockChain object
 
 // initialize list of users 
 const users = {

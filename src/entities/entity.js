@@ -36,7 +36,7 @@ class Entity {
     /**
      * Updates local block chain.
      * 
-     * @param {BlockChain} newBlockChain - blockChain of the network
+     * @param {BlockChain} newBlockChain - block chain of the network
      */
     updateBlockChain = newBlockChain => this.localBlockChain = [...newBlockChain.blocks];
 }

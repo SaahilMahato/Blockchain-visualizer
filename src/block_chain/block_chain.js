@@ -32,7 +32,7 @@ class BlockChain {
         }
         const previousHash = '0'; // previous hash of the block is always 0
         const currentTime = new Date(); // time when genesis block was created
-        const genesisBlockHash = await this.hashData(JSON.stringify(data) + currentTime + previousHash); // has the data
+        const genesisBlockHash = await this.hashData(JSON.stringify(data) + currentTime + previousHash); // hash the data
         const genesisBlock = new Block(data, currentTime, 0, genesisBlockHash, previousHash); // create the block
         this.blocks.push(genesisBlock); // add genesis block to the chain
     }
@@ -142,7 +142,7 @@ class BlockChain {
      */
     digestToHex = (hashBuffer) => {
         const hashArray = Array.from (new Uint8Array(hashBuffer)); // convert buffer to byte array
-        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // conver byte array to hex string
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert byte array to hex string
         return hashHex;
     }
 }
