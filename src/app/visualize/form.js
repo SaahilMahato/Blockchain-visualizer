@@ -74,9 +74,7 @@ transactionForm.addEventListener("submit", async (e) => {
     outputConsole.removeChild(miningMessage);
 
     addOutputToConsole(isTransfered, message);
-    if (isTransfered){
-        addBlockToGraph();
-    }
+    if (isTransfered) addBlockToGraph();
     makeTransactionButton.disabled = false;
 });
 
