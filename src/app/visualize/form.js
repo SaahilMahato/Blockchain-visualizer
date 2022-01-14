@@ -76,8 +76,8 @@ transactionForm.addEventListener("submit", async (e) => {
     addOutputToConsole(isTransfered, message);
     if (isTransfered){
         addBlockToGraph();
-        makeTransactionButton.disabled = false;
     }
+    makeTransactionButton.disabled = false;
 });
 
 
