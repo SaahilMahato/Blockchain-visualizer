@@ -15,20 +15,20 @@ const blockChain = new BlockChain(); // create blockChain object
 
 // initialize list of users 
 const users = {
-    "saahil": new NormalUser(blockChain, "Saahil Mahato"),
-    "anakin": new NormalUser(blockChain, "Anakin Skywalker"),
+    "saahil mahato": new NormalUser(blockChain, "Saahil Mahato"),
+    "anakin skywalker": new NormalUser(blockChain, "Anakin Skywalker"),
     "yoda": new NormalUser(blockChain, "Yoda"),
-    "hansolo": new NormalUser(blockChain, "Han Solo"),
-    "obiwan": new NormalUser(blockChain, "Obi-wan Kenobi"),
-    "quigon": new NormalUser(blockChain, "Qui-Gon Ginn"),
-    "ciri": new NormalUser(blockChain, "Cirilla Fiona Elen Riannon")
+    "han solo": new NormalUser(blockChain, "Han Solo"),
+    "obi-wan kenobi": new NormalUser(blockChain, "Obi-wan Kenobi"),
+    "qui-gon ginn": new NormalUser(blockChain, "Qui-Gon Ginn"),
+    "ciri": new NormalUser(blockChain, "Ciri")
 };
 
 // initialize lise of miners
 const miners = {
-    "padme": new Miner(blockChain, "Padme Amidala"),
-    "geralt": new Miner(blockChain, "Geralt of Rivia"),
-    "yennefer": new Miner(blockChain, "Yennefer of Vengerberg"),
+    "padme amidala": new Miner(blockChain, "Padme Amidala"),
+    "geralt": new Miner(blockChain, "Geralt"),
+    "yennefer": new Miner(blockChain, "Yennefer"),
     "vesimir": new Miner(blockChain, "Vesimir")
 };
 

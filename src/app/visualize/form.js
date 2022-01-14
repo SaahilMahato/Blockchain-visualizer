@@ -89,7 +89,7 @@ entitiesForm.addEventListener("submit", (e) => {
     const data = new FormData(e.target);
     const name = data.get("name").trim();
     const type = data.get("type");
-    const key = name.split(' ')[0].toLowerCase();
+    const key = name.toLowerCase();
 
     if (key in users) {
         addOutputToConsole(false, `User already exists. Name: ${name}, Type: normal user`);
