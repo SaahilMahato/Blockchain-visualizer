@@ -20,6 +20,7 @@ const settingsForm = document.querySelector(".settings-form");
 
 // Close button of block details
 const closeButtonBlockDetails = document.querySelector("#close-button-block-details");
+const makeTransactionButton = document.querySelector("#make-transaction-button");
 
 
 export {
@@ -33,5 +34,6 @@ export {
     transactionForm,
     entitiesForm,
     settingsForm,
-    closeButtonBlockDetails
+    closeButtonBlockDetails,
+    makeTransactionButton
 };

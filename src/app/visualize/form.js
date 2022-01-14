@@ -21,7 +21,8 @@ import {
     settingsForm, 
     senderSelect, 
     receiverSelect,
-    outputConsole
+    outputConsole,
+    makeTransactionButton
 } from "./dom_elements.js";
 
 import addOutputToConsole from "./output_console.js";
@@ -59,6 +60,7 @@ const populateSelectOptions = (select) => {
  */
 transactionForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    makeTransactionButton.disabled = true;
     const data = new FormData(e.target);
     const sender = users[data.get("sender")] || miners[data.get("sender")];
     const receiver = users[data.get("receiver")] || miners[data.get("receiver")];
@@ -72,7 +74,10 @@ transactionForm.addEventListener("submit", async (e) => {
     outputConsole.removeChild(miningMessage);
 
     addOutputToConsole(isTransfered, message);
-    if (isTransfered) addBlockToGraph();
+    if (isTransfered){
+        addBlockToGraph();
+        makeTransactionButton.disabled = false;
+    }
 });
 
 
@@ -86,10 +91,20 @@ entitiesForm.addEventListener("submit", (e) => {
     const type = data.get("type");
     const key = name.split(' ')[0].toLowerCase();
 
+    if (key in users) {
+        addOutputToConsole(false, `User already exists. Name: ${name}, Type: normal user`);
+        return;
+    }
+
+    if (key in miners) {
+        addOutputToConsole(false, `User already exists. Name: ${name}, Type: miner`);
+        return;
+    }
+
     // creates new entity based on type
-    if (type === "users")
+    if (type === "normal user")
         users[key] = new NormalUser(blockChain, name);
-    else if (type === "miners")
+    else if (type === "miner")
         miners[key] = new Miner(blockChain, name);
     else ;
 
